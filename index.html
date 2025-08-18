@@ -69,7 +69,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="cta-btn" href="index.html#about"
+      <a class="cta-btn"  data-bs-toggle="modal" data-bs-target="#exampleModal"
         style="font-family: 'Cairo', sans-serif; font-size:16px; font-weight:700;">ابدأ تسجيل</a>
 
 
@@ -79,7 +79,7 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
+    <section id="hero"  class="hero section dark-background">
 
       <img src="assets/img/hero_img.jpg" alt="" data-aos="fade-in">
 
@@ -93,7 +93,7 @@
           العقاري في مصر
         </p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#about" class="btn-get-started "
+          <a href="#about" class="btn-get-started " data-bs-toggle="modal" data-bs-target="#exampleModal"
             style="font-family: 'Cairo', sans-serif; font-size:16px; font-weight:700;">ابدأ تسجيل</a>
           <a href="https://www.youtube.com/watch?v=iUtlRkf0zIo&list=RDiUtlRkf0zIo&start_radio=1"
             class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"
@@ -196,7 +196,7 @@
         <ul class="nav nav-tabs row  d-flex" data-aos="fade-up" data-aos-delay="100">
           <li class="nav-item col-3">
             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-              <h4 class="d-none d-lg-block">
+              <h4 class=" d-lg-block">
 
                 تاچ سيتي</h4>
             </a>
@@ -204,17 +204,17 @@
 
           <li class="nav-item col-3">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-              <h4 class="d-none d-lg-block">سراي</h4>
+              <h4 class=" d-lg-block">سراي</h4>
             </a>
           </li>
           <li class="nav-item col-3">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
-              <h4 class="d-none d-lg-block">تلالا</h4>
+              <h4 class=" d-lg-block">تلالا</h4>
             </a>
           </li>
           <li class="nav-item col-3">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
-              <h4 class="d-none d-lg-block">The Butterfly</h4>
+              <h4 class=" d-lg-block">The Butterfly</h4>
             </a>
           </li>
         </ul><!-- End Tab Nav -->
@@ -287,7 +287,7 @@
             </div>
 
             <div class="form-container">
-              <form class="form-wrapper" onsubmit="handleSubmit(event)">
+              <form class="form-wrapper" id ="form" onsubmit="handleSubmit(event,'tajcity')">
                 <!-- العنوان والوصف -->
                 <div class="form-header">
                   <h3>سجّل بياناتك الآن</h3>
@@ -387,7 +387,7 @@
               </div>
             </div>
             <div class="form-container" id="sarai-form">
-              <form class="form-wrapper" onsubmit="handleSubmit(event)">
+              <form class="form-wrapper" onsubmit="handleSubmit(event,'sarai')">
                 <!-- العنوان والوصف -->
                 <div class="form-header">
                   <h3>سجّل بياناتك الآن</h3>
@@ -478,7 +478,7 @@
               </div>
             </div>
             <div class="form-container">
-              <form class="form-wrapper" onsubmit="handleSubmit(event)">
+              <form class="form-wrapper"  onsubmit="handleSubmit(event,'talala')">
                 <!-- العنوان والوصف -->
                 <div class="form-header">
                   <h3>سجّل بياناتك الآن</h3>
@@ -568,7 +568,8 @@
             </div>
 
             <div class="form-container">
-              <form class="form-wrapper" onsubmit="handleSubmit(event)">
+                <div class="form-wrapper" id="form-wrapper">
+                  
                 <!-- العنوان والوصف -->
                 <div class="form-header">
                   <h3>سجّل بياناتك الآن</h3>
@@ -581,15 +582,17 @@
                 </div>
 
                 <!-- الاسم والموبايل -->
+                <form  onsubmit="handleSubmit(event,'thebutterfly')">
+
                 <div class="form-row">
                   <div class="form-group">
                     <label for="name" class="form-label">الاسم</label>
-                    <input type="text" class="form-control" id="name" placeholder="أدخل اسمك" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="أدخل اسمك" required>
                   </div>
 
                   <div class="form-group">
                     <label for="phone" class="form-label">رقم الموبايل</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="01XXXXXXXXX" pattern="^01[0-9]{9}$"
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="01XXXXXXXXX" pattern="^01[0-9]{9}$"
                       required>
                   </div>
                 </div>
@@ -598,6 +601,8 @@
                   تسجيل البيانات
                 </button>
               </form>
+              </div>
+
             </div>
           </div><!-- End Tab Content Item -->
 
@@ -612,11 +617,52 @@
 
 
   </main>
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="form-container">
+          <div class="form-wrapper" id="form-wrapper">
+            
+          <!-- العنوان والوصف -->
+          <div class="form-header">
+            <h3>سجّل بياناتك الآن</h3>
+            <p>
+              سجل الآن <strong></strong> ليتم التواصل معك وشرح كل
+              <span class="highlight">مميزات The Butterfly | مستقبل سيتي - القاهرة الجديدة
 
+              </span>.
+            </p>
+          </div>
+
+          <!-- الاسم والموبايل -->
+          <form   onsubmit="handleSubmit(event,'signup')">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" class="form-label">الاسم</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="أدخل اسمك" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">رقم الموبايل</label>
+              <input type="tel" class="form-control" id="phone" name="phone" placeholder="01XXXXXXXXX" pattern="^01[0-9]{9}$"
+                required>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            تسجيل البيانات
+          </button>
+        </form>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
   <footer id="footer" class="footer dark-background">
 
     <div class="container footer-top">
-      <div class="row gy-4">
+      <div class="row gy-4 foot-navs">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
             <img src="assets/img/logo.webp" alt="Logo" style="width:150px;">
@@ -633,20 +679,20 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>القائمة</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#home">الرئيسية</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#hero">الرئيسية</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#about">من نحن</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#features">مشاريعنا</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">تواصل معنا</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="###">تواصل معنا</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>مشاريعنا</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">تاچ سيتي</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#sarai-form">سراي</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">تلالا</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">The Butterfly</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#features-tab-1">تاچ سيتي</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#features-tab-2"  >سراي</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#features-tab-3"  >تلالا</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#features-tab-4">The Butterfly</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-4 footer-links">

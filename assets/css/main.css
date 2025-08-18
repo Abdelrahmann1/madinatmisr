@@ -259,6 +259,7 @@ h6 {
   transition: 0.3s;
   text-transform: uppercase;
   border: 2px solid var(--contrast-color);
+  cursor: pointer;
 }
 
 .header .cta-btn:hover,
@@ -1855,7 +1856,7 @@ body {
 
 .form-container {
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 15px;
   display: flex;
   align-items: flex-start;
@@ -1969,11 +1970,17 @@ body {
   .form-container {
       padding: 5px;
   }
-  
+    .foot-navs{
+      display: flex;
+      justify-content: space-between;
+    }
+    .footer .footer-links{
+      width: fit-content;
+    }
   .form-wrapper {
       padding: 20px 15px;
       border-radius: 0;
-      min-height: 100vh;
+      /* min-height: 100vh; */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;

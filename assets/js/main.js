@@ -5,7 +5,66 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
 
+      // لو الضغط على # فقط (مثل # أو #_) نرجع
+      if (!targetId || targetId === '#' || targetId === '#_') {
+          return; // سلوك عادي
+      }
+
+      // نبحث عن العنصر المستهدف
+      const targetElement = document.querySelector(targetId);
+
+      // تأكد أن العنصر موجود وله كلاس tab-pane
+      if (targetElement && targetElement.classList.contains('tab-pane')) {
+          e.preventDefault(); // نمنع السلوك الطبيعي فقط لو ده تاب
+
+          // إزالة active من كل التبز
+          document.querySelectorAll('.nav-link').forEach(tab => {
+              tab.classList.remove('active');
+          });
+
+          // تفعيل التب اللي يشير للـ targetId
+          const correspondingTab = document.querySelector(`[data-bs-target="${targetId}"]`);
+          if (correspondingTab) {
+              correspondingTab.classList.add('active');
+          }
+
+          // إزالة show و active من كل tab-pane
+          document.querySelectorAll('.tab-pane').forEach(pane => {
+              pane.classList.remove('show', 'active');
+          });
+
+          // إضافة show و active للتاب المستهدف
+          targetElement.classList.add('show', 'active');
+
+          // سكروول ناعم (اختياري)
+          window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+          });
+      }
+      // لو ما كانش tab-pane، نسمح بالسلوك الطبيعي (مثل القفز للقسم)
+      // لا حاجة لـ preventDefault في الحالة دي
+  });
+});
+function handleSubmit(e,sheet){
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+
+  console.log(name,phone,sheet);
+
+  fetch("https://script.google.com/macros/s/AKfycbyTqwp4eCqBaf1YpY2gxse4iVoVAP4LL9RbtIqca5rGyAA6SI0S1SnVQUMTlhQgyB-T8Q/exec", {
+    method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&sheet=${encodeURIComponent(sheet)}`
+  })
+  .then(res => res.text())
+  .then(txt => alert(txt));
+}
 (function() {
   "use strict";
 
