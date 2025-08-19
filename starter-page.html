@@ -1,14 +1,31 @@
-\<!DOCTYPE html>
+\
+<!DOCTYPE html>
 <html lang="ar">
+
 <head>
   <meta charset="UTF-8">
   <title>Form Test</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    .submit-btn { padding: 10px 20px; background: #28a745; color: #fff; border: none; cursor: pointer; }
-    #msg { margin-top: 15px; font-weight: bold; }
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background: #28a745;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
 
   <form class="form-wrapper" id="form">
@@ -30,8 +47,8 @@
 
       <div class="form-group">
         <label for="phone" class="form-label">رقم الموبايل</label>
-        <input type="tel" class="form-control" id="phone" name="Phone"
-              placeholder="01XXXXXXXXX" pattern="^01[0-9]{9}$" required>
+        <input type="tel" class="form-control" id="phone" name="Phone" placeholder="01XXXXXXXXX" pattern="^01[0-9]{9}$"
+          required>
       </div>
     </div>
 
@@ -43,7 +60,7 @@
   <div id="msg"></div>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec"; 
+    const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec";
     const form = document.getElementById("form");
     const msg = document.getElementById("msg");
 
@@ -75,4 +92,5 @@
   </script>
 
 </body>
+
 </html>
