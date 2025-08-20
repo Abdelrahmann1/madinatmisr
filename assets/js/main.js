@@ -80,7 +80,7 @@ function handleSubmit(e, sheet) {
     name = nameInput.value;
     phone = phoneInput.value;
   }
-  else if (sheet === "mhnd all") {
+  else if (sheet === "mnhd all") {
     nameInput = document.getElementById("name_sheet1");
     phoneInput = document.getElementById("phone_sheet1");
     name = nameInput.value;
@@ -100,7 +100,7 @@ function handleSubmit(e, sheet) {
   const formData = new FormData();
   formData.append('Name', name);
   formData.append('Phone', phone);
-  formData.append('Compound / Project', sheet); // used to route to correct sheet
+  formData.append('Compound', sheet); // used to route to correct sheet
 
   fetch(scriptURL, {
     method: 'POST',
@@ -110,6 +110,8 @@ function handleSubmit(e, sheet) {
   .then(text => {
     if (nameInput) nameInput.value = "";
     if (phoneInput) phoneInput.value = "";
+    console.error('done:', text);
+
     showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
   })
   .catch(error => {
@@ -124,19 +126,43 @@ function handleSubmit(e, sheet) {
 // Reusable function to show Bootstrap alert
 function showAlert(message, type) {
   const alertContainer = document.getElementById("alertContainer");
-  alertContainer.innerHTML = ""; // Clear previous alerts
+
+  // Clear any existing alerts
+  while (alertContainer.firstChild) {
+    alertContainer.firstChild.remove();
+  }
 
   if (!message || !type) return;
 
   const alertDiv = document.createElement("div");
-  alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+  alertDiv.className = `alert alert-${type} alert-dismissible fade`;
   alertDiv.role = "alert";
   alertDiv.innerHTML = `
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     ${message}
   `;
 
   alertContainer.appendChild(alertDiv);
+
+  // Trigger reflow to enable transition
+  void alertDiv.offsetWidth;
+
+  // Trigger fade-in
+  alertDiv.classList.add("show");
+
+  // Auto-close after 10 seconds
+  const AUTO_CLOSE_DELAY = 10000;
+    // This runs AFTER the fade-out animation completes
+    if (type === "success") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  setTimeout(() => {
+    const bsAlert = bootstrap.Alert.getOrCreateInstance(alertDiv);
+    bsAlert.close(); // Starts fade-out
+  }, AUTO_CLOSE_DELAY);
+
+  // ✅ Listen for when Bootstrap finishes removing the alert
+
 }
 (function() {
   "use strict";
