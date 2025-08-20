@@ -80,7 +80,7 @@ function handleSubmit(e, sheet) {
     name = nameInput.value;
     phone = phoneInput.value;
   }
-  else if (sheet === "sheet1") {
+  else if (sheet === "mhnd all") {
     nameInput = document.getElementById("name_sheet1");
     phoneInput = document.getElementById("phone_sheet1");
     name = nameInput.value;
