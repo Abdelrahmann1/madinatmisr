@@ -52,42 +52,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 function handleSubmit(e, sheet) {
   e.preventDefault();
+  let name, phone;
+  let nameInput, phoneInput; // Keep references to the input elements
 
-  let name, phone; // ✅ Declare variables first
-
+  // Select inputs based on sheet and get their values + references
   if (sheet === "tajcity") {
-    name = document.getElementById("name_tajcity").value;
-    phone = document.getElementById("phone_tajcity").value;
+    nameInput = document.getElementById("name_tajcity");
+    phoneInput = document.getElementById("phone_tajcity");
+    name = nameInput.value;
+    phone = phoneInput.value;
   }
   else if (sheet === "talala") {
-    name = document.getElementById("name_talala").value;
-    phone = document.getElementById("phone_talala").value;
+    nameInput = document.getElementById("name_talala");
+    phoneInput = document.getElementById("phone_talala");
+    name = nameInput.value;
+    phone = phoneInput.value;
   }
   else if (sheet === "thebutterfly") {
-    name = document.getElementById("name_thebutterfly").value;
-    phone = document.getElementById("phone_thebutterfly").value;
+    nameInput = document.getElementById("name_thebutterfly");
+    phoneInput = document.getElementById("phone_thebutterfly");
+    name = nameInput.value;
+    phone = phoneInput.value;
   }
   else if (sheet === "sarai") {
-    name = document.getElementById("name_sarai").value;
-    phone = document.getElementById("phone_sarai").value;
+    nameInput = document.getElementById("name_sarai");
+    phoneInput = document.getElementById("phone_sarai");
+    name = nameInput.value;
+    phone = phoneInput.value;
   }
   else if (sheet === "sheet1") {
-    name = document.getElementById("name_sheet1").value;
-    phone = document.getElementById("phone_sheet1").value;
+    nameInput = document.getElementById("name_sheet1");
+    phoneInput = document.getElementById("phone_sheet1");
+    name = nameInput.value;
+    phone = phoneInput.value;
   }
   else {
-    alert("Unknown city/sheet: " + sheet);
+    showAlert("Unknown city/sheet: " + sheet, "danger");
     return;
   }
   const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec";
 
   console.log("Submitting:", name, phone, sheet); // ✅ Should now show real values
-
+  // Show progress bar
+  const progressContainer = document.getElementById("progressContainer");
+  progressContainer.classList.remove("d-none");
   // Create form data
   const formData = new FormData();
   formData.append('Name', name);
   formData.append('Phone', phone);
-  formData.append('City', sheet); // used to route to correct sheet
+  formData.append('Compound / Project', sheet); // used to route to correct sheet
 
   fetch(scriptURL, {
     method: 'POST',
@@ -95,14 +108,35 @@ function handleSubmit(e, sheet) {
   })
   .then(response => response.text())
   .then(text => {
-    alert('Success: ' + text);
-    window.location.reload();
+    if (nameInput) nameInput.value = "";
+    if (phoneInput) phoneInput.value = "";
+    showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
   })
   .catch(error => {
     console.error('Error:', error);
-    alert('Error: ' + error.message);
-    window.location.reload();
+    showAlert("حدث خطأ، برجاء المحاولة مرة أخرى.", "danger");
+  })  .finally(() => {
+    // Hide progress bar after success or error
+    progressContainer.classList.add("d-none");
   });
+}
+
+// Reusable function to show Bootstrap alert
+function showAlert(message, type) {
+  const alertContainer = document.getElementById("alertContainer");
+  alertContainer.innerHTML = ""; // Clear previous alerts
+
+  if (!message || !type) return;
+
+  const alertDiv = document.createElement("div");
+  alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+  alertDiv.role = "alert";
+  alertDiv.innerHTML = `
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    ${message}
+  `;
+
+  alertContainer.appendChild(alertDiv);
 }
 (function() {
   "use strict";
