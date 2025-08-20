@@ -43,6 +43,7 @@
       <div class="form-group">
         <label for="name" class="form-label">الاسم</label>
         <input type="text" class="form-control" id="name" name="Name" placeholder="أدخل اسمك" required>
+        <input type="text" value="tajcity" name="city" required>
       </div>
 
       <div class="form-group">
@@ -63,7 +64,6 @@
     const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec";
     const form = document.getElementById("form");
     const msg = document.getElementById("msg");
-
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 

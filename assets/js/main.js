@@ -50,20 +50,59 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       // لا حاجة لـ preventDefault في الحالة دي
   });
 });
-function handleSubmit(e,sheet){
+function handleSubmit(e, sheet) {
   e.preventDefault();
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
 
-  console.log(name,phone,sheet);
+  let name, phone; // ✅ Declare variables first
 
-  fetch("https://script.google.com/macros/s/AKfycbyTqwp4eCqBaf1YpY2gxse4iVoVAP4LL9RbtIqca5rGyAA6SI0S1SnVQUMTlhQgyB-T8Q/exec", {
-    method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&sheet=${encodeURIComponent(sheet)}`
+  if (sheet === "tajcity") {
+    name = document.getElementById("name_tajcity").value;
+    phone = document.getElementById("phone_tajcity").value;
+  }
+  else if (sheet === "talala") {
+    name = document.getElementById("name_talala").value;
+    phone = document.getElementById("phone_talala").value;
+  }
+  else if (sheet === "thebutterfly") {
+    name = document.getElementById("name_thebutterfly").value;
+    phone = document.getElementById("phone_thebutterfly").value;
+  }
+  else if (sheet === "sarai") {
+    name = document.getElementById("name_sarai").value;
+    phone = document.getElementById("phone_sarai").value;
+  }
+  else if (sheet === "sheet1") {
+    name = document.getElementById("name_sheet1").value;
+    phone = document.getElementById("phone_sheet1").value;
+  }
+  else {
+    alert("Unknown city/sheet: " + sheet);
+    return;
+  }
+  const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec";
+
+  console.log("Submitting:", name, phone, sheet); // ✅ Should now show real values
+
+  // Create form data
+  const formData = new FormData();
+  formData.append('Name', name);
+  formData.append('Phone', phone);
+  formData.append('City', sheet); // used to route to correct sheet
+
+  fetch(scriptURL, {
+    method: 'POST',
+    body: formData
   })
-  .then(res => res.text())
-  .then(txt => alert(txt));
+  .then(response => response.text())
+  .then(text => {
+    alert('Success: ' + text);
+    window.location.reload();
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Error: ' + error.message);
+    window.location.reload();
+  });
 }
 (function() {
   "use strict";
