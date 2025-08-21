@@ -47,7 +47,6 @@ function handleSubmit(e, sheet) {
   e.preventDefault();
   let name, phone;
   let nameInput, phoneInput; // Keep references to the input elements
-
   // Select inputs based on sheet and get their values + references
   if (sheet === "tajcity") {
     nameInput = document.getElementById("name_tajcity");
@@ -104,12 +103,9 @@ function handleSubmit(e, sheet) {
   .then(text => {
     if (nameInput) nameInput.value = "";
     if (phoneInput) phoneInput.value = "";
-    console.error('done:', text);
-
     showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
   })
   .catch(error => {
-    console.error('Error:', error);
     showAlert("حدث خطأ، برجاء المحاولة مرة أخرى.", "danger");
   })  .finally(() => {
     // Hide progress bar after success or error
