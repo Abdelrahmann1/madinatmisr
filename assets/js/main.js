@@ -92,7 +92,7 @@ function handleSubmit(e, sheet) {
   const formData = new FormData();
   formData.append('Name', name);
   formData.append('Phone', phone);
-  formData.append('Compound', sheet); // used to route to correct sheet
+  formData.append('Compound', sheet); 
 
   fetch(scriptURL, {
     method: 'POST',
