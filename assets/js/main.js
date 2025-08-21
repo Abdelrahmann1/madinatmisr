@@ -104,6 +104,7 @@ function handleSubmit(e, sheet) {
 
   fetch(scriptURL, {
     method: 'POST',
+    mode: 'no-cors',
     body: formData
   })
   .then(response => response.text())
