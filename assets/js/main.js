@@ -104,6 +104,8 @@ function handleSubmit(e, sheet) {
     if (nameInput) nameInput.value = "";
     if (phoneInput) phoneInput.value = "";
     showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
+    window.location.href = 'thank_you.html';
+
   })
   .catch(error => {
     showAlert("حدث خطأ، برجاء المحاولة مرة أخرى.", "danger");
