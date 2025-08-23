@@ -43,79 +43,159 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       // لا حاجة لـ preventDefault في الحالة دي
   });
 });
-function handleSubmit(e, sheet) {
+// function handleSubmit(e, sheet) {
+//   e.preventDefault();
+//   let name, phone;
+//   let nameInput, phoneInput; // Keep references to the input elements
+//   // Select inputs based on sheet and get their values + references
+//   if (sheet === "tajcity") {
+//     nameInput = document.getElementById("name_tajcity");
+//     phoneInput = document.getElementById("phone_tajcity");
+//     name = nameInput.value;
+//     phone = phoneInput.value;
+//   }
+//   else if (sheet === "talala") {
+//     nameInput = document.getElementById("name_talala");
+//     phoneInput = document.getElementById("phone_talala");
+//     name = nameInput.value;
+//     phone = phoneInput.value;
+//   }
+//   else if (sheet === "thebutterfly") {
+//     nameInput = document.getElementById("name_thebutterfly");
+//     phoneInput = document.getElementById("phone_thebutterfly");
+//     name = nameInput.value;
+//     phone = phoneInput.value;
+//   }
+//   else if (sheet === "sarai") {
+//     nameInput = document.getElementById("name_sarai");
+//     phoneInput = document.getElementById("phone_sarai");
+//     name = nameInput.value;
+//     phone = phoneInput.value;
+//   }
+//   else if (sheet === "mnhd all") {
+//     nameInput = document.getElementById("name_sheet1");
+//     phoneInput = document.getElementById("phone_sheet1");
+//     name = nameInput.value;
+//     phone = phoneInput.value;
+//   }
+//   else {
+//     showAlert("Unknown city/sheet: " + sheet, "danger");
+//     return;
+//   }
+//   const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec";
+
+//   console.log("Submitting:", name, phone, sheet); // ✅ Should now show real values
+//   // Show progress bar
+//   const progressContainer = document.getElementById("progressContainer");
+//   progressContainer.classList.remove("d-none");
+//   // Create form data
+//   const formData = new FormData();
+//   formData.append('Name', name);
+//   formData.append('Phone', phone);
+//   formData.append('Compound', sheet); 
+
+//   fetch(scriptURL, {
+//     method: 'POST',
+//     mode:"no-cors",
+//     body: formData
+//   })
+//   .then(response => response.text())
+//   .then(text => {
+//     if (nameInput) nameInput.value = "";
+//     if (phoneInput) phoneInput.value = "";
+//     showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
+//     window.location.href = 'thank_you.html';
+
+//   })
+//   .catch(error => {
+//     showAlert("حدث خطأ، برجاء المحاولة مرة أخرى.", "danger");
+//   })  .finally(() => {
+//     // Hide progress bar after success or error
+//     progressContainer.classList.add("d-none");
+//   });
+// }
+
+// Reusable function to show Bootstrap alert
+async function handleSubmit(e, sheet) {
   e.preventDefault();
+
   let name, phone;
-  let nameInput, phoneInput; // Keep references to the input elements
-  // Select inputs based on sheet and get their values + references
+  let nameInput, phoneInput;
+
+  // Select inputs based on sheet
   if (sheet === "tajcity") {
     nameInput = document.getElementById("name_tajcity");
     phoneInput = document.getElementById("phone_tajcity");
     name = nameInput.value;
     phone = phoneInput.value;
-  }
-  else if (sheet === "talala") {
+  } else if (sheet === "talala") {
     nameInput = document.getElementById("name_talala");
     phoneInput = document.getElementById("phone_talala");
     name = nameInput.value;
     phone = phoneInput.value;
-  }
-  else if (sheet === "thebutterfly") {
+  } else if (sheet === "thebutterfly") {
     nameInput = document.getElementById("name_thebutterfly");
     phoneInput = document.getElementById("phone_thebutterfly");
     name = nameInput.value;
     phone = phoneInput.value;
-  }
-  else if (sheet === "sarai") {
+  } else if (sheet === "sarai") {
     nameInput = document.getElementById("name_sarai");
     phoneInput = document.getElementById("phone_sarai");
     name = nameInput.value;
     phone = phoneInput.value;
-  }
-  else if (sheet === "mnhd all") {
+  } else if (sheet === "mnhd all") {
     nameInput = document.getElementById("name_sheet1");
     phoneInput = document.getElementById("phone_sheet1");
     name = nameInput.value;
     phone = phoneInput.value;
-  }
-  else {
+  } else {
     showAlert("Unknown city/sheet: " + sheet, "danger");
     return;
   }
-  const scriptURL = "https://script.google.com/macros/s/AKfycby5io5W_E8_PHm9XkFC1JqX7LXiNTrNZMSe9Wnb9Jy38GyLxU6N4iSvjv2nb5Od120L/exec";
 
-  console.log("Submitting:", name, phone, sheet); // ✅ Should now show real values
+  // Validate inputs
+  if (!name || !phone) {
+    showAlert("الرجاء إدخال الاسم ورقم الهاتف.", "warning");
+    return;
+  }
+
   // Show progress bar
   const progressContainer = document.getElementById("progressContainer");
   progressContainer.classList.remove("d-none");
-  // Create form data
-  const formData = new FormData();
-  formData.append('Name', name);
-  formData.append('Phone', phone);
-  formData.append('Compound', sheet); 
 
-  fetch(scriptURL, {
-    method: 'POST',
-    mode:"no-cors",
-    body: formData
-  })
-  .then(response => response.text())
-  .then(text => {
-    if (nameInput) nameInput.value = "";
-    if (phoneInput) phoneInput.value = "";
-    showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
-    window.location.href = 'thank_you.html';
+  // Send to your PHP backend
+  try {
+    const response = await fetch('../../submit-sheet.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        name: name,
+        phone: phone,
+        compound: sheet
+      })
+    });
 
-  })
-  .catch(error => {
+    const result = await response.json();
+
+    if (result.success) {
+      nameInput.value = "";
+      phoneInput.value = "";
+      showAlert("شكراً لك! تم إرسال بياناتك بنجاح.", "success");
+      setTimeout(() => {
+        window.location.href = 'thank_you.html';
+      }, 1000);
+    } else {
+      throw new Error(result.error || "Submission failed");
+    }
+  } catch (error) {
+    console.error("Error:", error);
     showAlert("حدث خطأ، برجاء المحاولة مرة أخرى.", "danger");
-  })  .finally(() => {
-    // Hide progress bar after success or error
+  } finally {
     progressContainer.classList.add("d-none");
-  });
+  }
 }
-
-// Reusable function to show Bootstrap alert
 function showAlert(message, type) {
   const alertContainer = document.getElementById("alertContainer");
 
