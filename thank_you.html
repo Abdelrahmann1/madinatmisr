@@ -2,164 +2,165 @@
 <html lang="ar">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>thank-you</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شكراً لك - تم إرسال طلبك</title>
 
-    <!-- ✅ Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5RRF4N8P');
-    </script>
-    <!-- ✅ End Google Tag Manager -->
+  <!-- ✅ Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-5RRF4N8P');
+  </script>
+  <!-- ✅ End Google Tag Manager -->
 
-    <!-- ✅ Google tag (Google Ads) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17502688608"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-        gtag('config', 'AW-17502688608');
-    </script>
-    <!-- ✅ End Google Ads -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 10px;
+    }
 
-    <!-- Bootstrap Icons CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    .thank-you {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      animation: fadeIn 0.8s ease-in-out;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 10px;
-        }
+    .thank-you h1 {
+      color: #ce2934;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
 
-        .thank-you {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
+    .thank-you p {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
 
-        .thank-you h1 {
-            color: #ce2934;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+    .thank-you a.home-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #ce2934;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
 
-        .thank-you p {
-            font-size: 16px;
-            color: #333;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+    .thank-you a.home-btn:hover {
+      background-color: #a91f28;
+    }
 
-        .thank-you a.home-btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #ce2934;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
+    @media (max-width: 480px) {
+      .thank-you {
+        padding: 20px;
+      }
 
-        .thank-you a.home-btn:hover {
-            background-color: #a91f28;
-        }
+      .thank-you h1 {
+        font-size: 20px;
+      }
 
-        @media (max-width: 480px) {
-            .thank-you {
-                padding: 20px;
-            }
+      .thank-you p {
+        font-size: 14px;
+      }
 
-            .thank-you h1 {
-                font-size: 20px;
-            }
+      .thank-you a.home-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
 
-            .thank-you p {
-                font-size: 14px;
-            }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-            .thank-you a.home-btn {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        /* Floating Buttons */
-        .floating-btn {
-            position: fixed;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            color: white;
-            font-size: 26px;
-            z-index: 1000;
-            text-decoration: none;
-        }
+    /* Floating Buttons */
+    .floating-btn {
+      position: fixed;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 26px;
+      z-index: 1000;
+      text-decoration: none;
+    }
 
-        .whatsapp-btn {
-            bottom: 90px;
-            left: 20px;
-            background-color: #25D366;
-            font-size: 28px;
-        }
+    .whatsapp-btn {
+      bottom: 90px;
+      left: 20px;
+      background-color: #25D366;
+      font-size: 28px;
+    }
 
-        .call-btn {
-            bottom: 20px;
-            left: 20px;
-            background-color: #ce2934;
-        }
-    </style>
+    .call-btn {
+      bottom: 20px;
+      left: 20px;
+      background-color: #ce2934;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- ✅ Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RRF4N8P"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- ✅ End Google Tag Manager (noscript) -->
+  <!-- ✅ Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RRF4N8P"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- ✅ End Google Tag Manager (noscript) -->
 
-    <div class="thank-you">
-        <h1>شكراً لك!</h1>
-        <p>تم إرسال طلبك بنجاح وسنقوم بالتواصل معك قريباً.</p>
-        <a href="index.html" class="home-btn">العودة إلى الصفحة الرئيسية</a>
-    </div>
+  <div class="thank-you">
+    <h1>شكراً لك!</h1>
+    <p>تم إرسال طلبك بنجاح وسنقوم بالتواصل معك قريباً.</p>
+    <a href="index.html" class="home-btn">العودة إلى الصفحة الرئيسية</a>
+  </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/201050564000" target="_blank" class="floating-btn whatsapp-btn">
-        <i class="bi bi-whatsapp"></i>
-    </a>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/201050564000" target="_blank" class="floating-btn whatsapp-btn" aria-label="تواصل عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
+  </a>
 
-    <!-- Floating Call Button -->
-    <a href="tel:+201050564000" class="floating-btn call-btn">
-        <i class="bi bi-telephone-fill"></i>
-    </a>
+  <!-- Floating Call Button -->
+  <a href="tel:+201050564000" class="floating-btn call-btn" aria-label="اتصال مباشر">
+    <i class="bi bi-telephone-fill"></i>
+  </a>
 
 </body>
-
 </html>

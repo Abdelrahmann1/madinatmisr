@@ -1,46 +1,46 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
+  anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
 
-    // لو الضغط على # فقط (مثل # أو #_) نرجع
-    if (!targetId || targetId === '#' || targetId === '#_') {
-      return; // سلوك عادي
-    }
-
-    // نبحث عن العنصر المستهدف
-    const targetElement = document.querySelector(targetId);
-
-    // تأكد أن العنصر موجود وله كلاس tab-pane
-    if (targetElement && targetElement.classList.contains('tab-pane')) {
-      e.preventDefault(); // نمنع السلوك الطبيعي فقط لو ده تاب
-
-      // إزالة active من كل التبز
-      document.querySelectorAll('.nav-link').forEach(tab => {
-        tab.classList.remove('active');
-      });
-
-      // تفعيل التب اللي يشير للـ targetId
-      const correspondingTab = document.querySelector(`[data-bs-target="${targetId}"]`);
-      if (correspondingTab) {
-        correspondingTab.classList.add('active');
+      // لو الضغط على # فقط (مثل # أو #_) نرجع
+      if (!targetId || targetId === '#' || targetId === '#_') {
+          return; // سلوك عادي
       }
 
-      // إزالة show و active من كل tab-pane
-      document.querySelectorAll('.tab-pane').forEach(pane => {
-        pane.classList.remove('show', 'active');
-      });
+      // نبحث عن العنصر المستهدف
+      const targetElement = document.querySelector(targetId);
 
-      // إضافة show و active للتاب المستهدف
-      targetElement.classList.add('show', 'active');
+      // تأكد أن العنصر موجود وله كلاس tab-pane
+      if (targetElement && targetElement.classList.contains('tab-pane')) {
+          e.preventDefault(); // نمنع السلوك الطبيعي فقط لو ده تاب
 
-      // سكروول ناعم (اختياري)
-      window.scrollTo({
-        top: targetElement.offsetTop - 100,
-        behavior: 'smooth'
-      });
-    }
-    // لو ما كانش tab-pane، نسمح بالسلوك الطبيعي (مثل القفز للقسم)
-    // لا حاجة لـ preventDefault في الحالة دي
+          // إزالة active من كل التبز
+          document.querySelectorAll('.nav-link').forEach(tab => {
+              tab.classList.remove('active');
+          });
+
+          // تفعيل التب اللي يشير للـ targetId
+          const correspondingTab = document.querySelector(`[data-bs-target="${targetId}"]`);
+          if (correspondingTab) {
+              correspondingTab.classList.add('active');
+          }
+
+          // إزالة show و active من كل tab-pane
+          document.querySelectorAll('.tab-pane').forEach(pane => {
+              pane.classList.remove('show', 'active');
+          });
+
+          // إضافة show و active للتاب المستهدف
+          targetElement.classList.add('show', 'active');
+
+          // سكروول ناعم (اختياري)
+          window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+          });
+      }
+      // لو ما كانش tab-pane، نسمح بالسلوك الطبيعي (مثل القفز للقسم)
+      // لا حاجة لـ preventDefault في الحالة دي
   });
 });
 // function handleSubmit(e, sheet) {
@@ -224,10 +224,10 @@ function showAlert(message, type) {
 
   // Auto-close after 10 seconds
   const AUTO_CLOSE_DELAY = 10000;
-  // This runs AFTER the fade-out animation completes
-  if (type === "success") {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+    // This runs AFTER the fade-out animation completes
+    if (type === "success") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   setTimeout(() => {
     const bsAlert = bootstrap.Alert.getOrCreateInstance(alertDiv);
     bsAlert.close(); // Starts fade-out
@@ -236,7 +236,7 @@ function showAlert(message, type) {
   // ✅ Listen for when Bootstrap finishes removing the alert
 
 }
-(function () {
+(function() {
   "use strict";
 
   /**
@@ -280,7 +280,7 @@ function showAlert(message, type) {
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function (e) {
+    navmenu.addEventListener('click', function(e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
       this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
@@ -348,7 +348,7 @@ function showAlert(message, type) {
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
@@ -366,13 +366,13 @@ function showAlert(message, type) {
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
         layoutMode: layout,
@@ -381,8 +381,8 @@ function showAlert(message, type) {
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
-      filters.addEventListener('click', function () {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
+      filters.addEventListener('click', function() {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -399,7 +399,7 @@ function showAlert(message, type) {
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function (e) {
+  window.addEventListener('load', function(e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
