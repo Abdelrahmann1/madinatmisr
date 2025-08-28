@@ -409,7 +409,7 @@ function showAlert(message, type) {
             top: section.offsetTop - parseInt(scrollMarginTop),
             behavior: 'smooth'
           });
-        }, 100);
+        }, );
       }
     }
   });
